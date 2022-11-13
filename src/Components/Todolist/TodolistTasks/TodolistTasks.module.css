@@ -1,0 +1,11 @@
+.specLi {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-right: 50px;
+}
+
+.listWrapper {
+    list-style: inside;
+}
+
