@@ -34,24 +34,24 @@ function App() {
     const todolistId1 = v1();
 
     const [todolists, setTodolists] = useState<TodolistType[]>([
-        {id: todolistId1, title: "What to learn"}
+        // {id: todolistId1, title: "What to learn"}
     ])
     const [tasks, setTasks] = useState<TasksType>({
-        [todolistId1]: {
-            tasks: [
-                {id: v1(), task: 'JS', isDone: true},
-                {id: v1(), task: 'React', isDone: false},
-                {id: v1(), task: 'Redux', isDone: false},
-            ],
-            filter: 'all',
-            isOpen: true
-        }
+        // [todolistId1]: {
+        //     tasks: [
+        //         {id: v1(), task: 'JS', isDone: true},
+        //         {id: v1(), task: 'React', isDone: false},
+        //         {id: v1(), task: 'Redux', isDone: false},
+        //     ],
+        //     filter: 'all',
+        //     isOpen: true
+        // }
     })
 
 
     useEffect(()=>{
-        const todoListsLocalData=localStorage.getItem('todolists')
         const taskLocalData=localStorage.getItem('tasks')
+        const todoListsLocalData=localStorage.getItem('todolists')
         if (taskLocalData && todoListsLocalData) {
             setTasks(JSON.parse(taskLocalData))
             setTodolists(JSON.parse(todoListsLocalData))
