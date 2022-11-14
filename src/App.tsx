@@ -35,12 +35,14 @@ function App() {
     const [todolists, setTodolists] = useState<TodolistType[]>(()=>{
         // возвращаем значения из localStorage
         let todoData=localStorage.getItem('todolists')
-        if (todoData) return JSON.parse(todoData)
+        if (todoData) return JSON.parse(todoData);
+        else return [];
     })
     const [tasks, setTasks] = useState<TasksType>(()=>{
         // возвращаем значения из localStorage
         let tasksData=localStorage.getItem('tasks')
         if (tasksData) return JSON.parse(tasksData)
+        else return {};
     })
     // сохранение todolist и tasks в localStorage
     useEffect(()=>{
