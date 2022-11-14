@@ -51,7 +51,7 @@ const Todolist = (props: TodolistType) => {
         <div className={s.wrapper}>
             <TodolistTitle title={props.title} isOpen={props.isOpen} setOpen={setOpened} setTitle={setTitle} deleteTodolist={deleteTodolist}/>
             <TodolistTasks tasks={props.tasks} isOpen={props.isOpen} addNewTask={addNewTask} deleteTask={deleteTask} changeTaskStatus={changeTaskStatus}/>
-            <TodolistFilters filter={props.filter} changeFilter={props.changeFilter}/>
+            <TodolistFilters filter={props.filter} changeFilter={props.changeFilter} isOpen={props.isOpen}/>
         </div>
     );
 };
