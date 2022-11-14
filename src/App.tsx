@@ -30,7 +30,6 @@ type TodolistType = {
 }
 
 function App() {
-    // const todolistId1 = v1();
 
     const [todolists, setTodolists] = useState<TodolistType[]>(()=>{
         // возвращаем значения из localStorage
@@ -121,7 +120,7 @@ function App() {
                                  isOpen={tasks[t.id].isOpen}
                                  setIsShowed={showTasks}/>
             })}
-            <Button name={'Add new todolist'} onClick={createNewTodolist}/>
+            <div className='btn-wrapper'><Button name={'Add new todolist'} onClick={createNewTodolist}/></div>
         </div>
     );
 }
