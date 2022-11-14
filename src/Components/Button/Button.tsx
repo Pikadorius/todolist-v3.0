@@ -4,13 +4,14 @@ import s from './Button.module.css'
 type ButtonType = {
     name: string
     onClick: ()=>void
+    active?: boolean
 }
 
-const Button: React.FC<ButtonType> = ({name,onClick}) => {
+const Button: React.FC<ButtonType> = ({name,onClick, active}) => {
 
     return (
         <div>
-            <button className={s.btn} onClick={onClick}>{name}</button>
+            <button className={active? `${s.active} ${s.btn}` : s.btn} onClick={onClick}>{name}</button>
         </div>
     );
 };

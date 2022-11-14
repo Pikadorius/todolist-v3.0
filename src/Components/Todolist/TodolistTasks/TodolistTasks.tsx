@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import {TaskType} from '../../../App';
 import s from './TodolistTasks.module.css'
 import Button from '../../Button/Button';
@@ -8,6 +8,7 @@ type TodolistTasksType = {
     isOpen: boolean
     addNewTask: (taskTitle: string) => void
     deleteTask: (taskId:string) => void
+    changeTaskStatus: (taskId: string, isDone: boolean)=>void
 }
 
 const TodolistTasks = (props: TodolistTasksType) => {
@@ -23,7 +24,7 @@ const TodolistTasks = (props: TodolistTasksType) => {
     return (
         <div>
             <div>
-                <input value={inputTitle} onChange={(e) => setInputTitle(e.currentTarget.value)}/>
+                <input placeholder={'Add new task'} value={inputTitle} onChange={(e) => setInputTitle(e.currentTarget.value)}/>
                 <Button name={'Add task'} onClick={addNewTask}/>
             </div>
             {props.isOpen ?
@@ -34,9 +35,14 @@ const TodolistTasks = (props: TodolistTasksType) => {
                             props.deleteTask(t.id)
                         }
 
+                        const changeTaskStatus = (e:ChangeEvent<HTMLInputElement>) => {
+                            props.changeTaskStatus(t.id, e.currentTarget.checked)
+                        }
+
+
                         return (
                             <div key={t.id} className={s.specLi}>
-                                <li>{t.task}<input type={'checkbox'} checked={t.isDone}/>
+                                <li>{t.task}<input type={'checkbox'} checked={t.isDone} onChange={changeTaskStatus}/>
                                 </li>
                                 <Button name={'x'} onClick={deleteTask}/>
                             </div>

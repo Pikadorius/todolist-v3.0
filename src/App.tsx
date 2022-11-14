@@ -3,7 +3,6 @@ import './App.css';
 import Todolist from './Components/Todolist/Todolist';
 import Button from './Components/Button/Button';
 import {v1} from 'uuid';
-import todolist from './Components/Todolist/Todolist';
 
 export type FilterType = 'all' | 'active' | 'completed'
 
@@ -85,6 +84,11 @@ function App() {
             {...tasks, [todolistId]:{...tasks[todolistId], tasks: tasks[todolistId].tasks.filter(t=>t.id!==taskId)}}
         )
     }
+    // изменение состояния задачи
+    const changeTaskStatus = (todolistId: string, taskId: string, isDone: boolean)=> {
+        setTasks({...tasks, [todolistId]: {...tasks[todolistId], tasks: tasks[todolistId].tasks.map(t=>t.id===taskId?{...t, isDone:isDone}: t)}})
+    }
+
     return (
         <div className="App">
             {/*передача задач в нужный тудулист исходя из фильтра*/}
@@ -96,6 +100,10 @@ function App() {
                 if (tasks[t.id].filter === 'completed') {
                     todoTasks = todoTasks.filter(t => t.isDone)
                 }
+                // изменение фильтра в тудулисте
+                const changeFilter = (filter: FilterType) => {
+                    setTasks({...tasks, [t.id]: {...tasks[t.id], filter: filter}})
+                }
 
                 return <Todolist id={t.id}
                                  key={t.id}
@@ -103,11 +111,11 @@ function App() {
                                  setTitle={setTodolistTitle}
                                  tasks={todoTasks}
                                  filter={tasks[t.id].filter}
+                                 changeFilter={changeFilter}
                                  deleteTodolist={deleteTodolist}
                                  addNewTask={addNewTask}
                                  deleteTask={deleteTask}
-                                 changeTaskStatus={() => {
-                                 }}
+                                 changeTaskStatus={changeTaskStatus}
                                  isOpen={tasks[t.id].isOpen}
                                  setIsShowed={showTasks}/>
             })}

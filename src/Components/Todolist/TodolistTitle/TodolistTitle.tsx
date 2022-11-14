@@ -27,7 +27,7 @@ const TodolistTitle = (props: TodolistTitleType) => {
         <div>
             <Button name={'Delete todo'} onClick={props.deleteTodolist}/>
             <div className={s.wrapper}>
-                {props.title === '' ? <input value={inputTitle} onChange={(e) => setInputTitle(e.currentTarget.value)}
+                {props.title === '' ? <input placeholder={'Enter title and press enter'} value={inputTitle} onChange={(e) => setInputTitle(e.currentTarget.value)}
                                              onKeyDown={setTitle}/> : <h3>{props.title}</h3>}
                 <Button name={props.isOpen ? 'Hide' : 'Show'} onClick={() => props.setOpen(props.isOpen)}/>
             </div>

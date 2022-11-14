@@ -1,4 +1,13 @@
 .btn {
     display: inline-block;
-    width: 100px;
+    width: 80px;
+}
+
+.btn:active {
+    background-color: green;
+}
+
+.active {
+    background-color: green;
+    color: white;
 }

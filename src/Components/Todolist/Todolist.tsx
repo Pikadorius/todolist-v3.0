@@ -10,10 +10,11 @@ type TodolistType = {
     title: string
     tasks: TaskType[]
     filter: FilterType
+    changeFilter: (filter: FilterType)=>void
     deleteTodolist: (todolistId:string)=>void
     addNewTask: (todolistId:string, taskTitle: string)=>void
     deleteTask: (todolistId: string, taskId: string)=>void
-    changeTaskStatus: ()=>void
+    changeTaskStatus: (todolistId: string, taskId: string, isDone: boolean)=>void
     isOpen: boolean
     setIsShowed: (todolistId: string, isOpen:boolean)=>void
     setTitle: (todolistId: string, title: string)=>void
@@ -41,11 +42,16 @@ const Todolist = (props: TodolistType) => {
         props.deleteTodolist(props.id);
     }
 
+    const changeTaskStatus = (taskId: string, isDone: boolean) => {
+        props.changeTaskStatus(props.id, taskId, isDone);
+    }
+
+
     return (
         <div className={s.wrapper}>
             <TodolistTitle title={props.title} isOpen={props.isOpen} setOpen={setOpened} setTitle={setTitle} deleteTodolist={deleteTodolist}/>
-            <TodolistTasks tasks={props.tasks} isOpen={props.isOpen} addNewTask={addNewTask} deleteTask={deleteTask}/>
-            <TodolistFilters/>
+            <TodolistTasks tasks={props.tasks} isOpen={props.isOpen} addNewTask={addNewTask} deleteTask={deleteTask} changeTaskStatus={changeTaskStatus}/>
+            <TodolistFilters filter={props.filter} changeFilter={props.changeFilter}/>
         </div>
     );
 };
