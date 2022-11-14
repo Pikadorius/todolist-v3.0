@@ -10,7 +10,7 @@ type TodolistType = {
     title: string
     tasks: TaskType[]
     filter: FilterType
-    deleteTodolist: ()=>void
+    deleteTodolist: (todolistId:string)=>void
     addNewTask: (todolistId:string, taskTitle: string)=>void
     deleteTask: (todolistId: string, taskId: string)=>void
     changeTaskStatus: ()=>void
@@ -37,9 +37,13 @@ const Todolist = (props: TodolistType) => {
         props.deleteTask(props.id, taskId);
     }
 
+    const deleteTodolist = () => {
+        props.deleteTodolist(props.id);
+    }
+
     return (
         <div className={s.wrapper}>
-            <TodolistTitle title={props.title} isOpen={props.isOpen} setOpen={setOpened} setTitle={setTitle}/>
+            <TodolistTitle title={props.title} isOpen={props.isOpen} setOpen={setOpened} setTitle={setTitle} deleteTodolist={deleteTodolist}/>
             <TodolistTasks tasks={props.tasks} isOpen={props.isOpen} addNewTask={addNewTask} deleteTask={deleteTask}/>
             <TodolistFilters/>
         </div>
